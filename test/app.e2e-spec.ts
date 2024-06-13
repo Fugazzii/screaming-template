@@ -15,16 +15,21 @@ describe("AppController (e2e)", () => {
         await app.init();
     });
 
-    it("/posts (GET)", () => {
-        return request(app.getHttpServer())
-            .get("/posts")
-            .expect(200);
-    });
-
-    it("/post (POST)", () => {
-        return request(app.getHttpServer())
-            .post("/post")
-            .send({ title: "Post 1", content: "Content 1", author: "Author" })
-            .expect(201);
+    /**
+     * @module PostsModule
+     */
+    describe("Testing Posts Module (e2e)", () => {
+        it("GET /posts", () => {
+            return request(app.getHttpServer())
+                .get("/posts")
+                .expect(200);
+        });
+    
+        it("POST /post", () => {
+            return request(app.getHttpServer())
+                .post("/post")
+                .send({ title: "Post 1", content: "Content 1", author: "Author" })
+                .expect(201);
+        });    
     });
 });

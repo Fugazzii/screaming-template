@@ -1,0 +1,31 @@
+{
+    "workbench.iconTheme": "material-icon-theme",
+    "explorer.confirmDelete": false,
+    "explorer.confirmDragAndDrop": false,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "javascript.updateImportsOnFileMove.enabled": "always",
+    "editor.formatOnSave": true,
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "diffEditor.ignoreTrimWhitespace": false,
+    "workbench.editor.tabSizing": "fixed",
+    "editor.detectIndentation": false,
+    "workbench.colorTheme": "Default Dark+",
+    "material-icon-theme.activeIconPack": "nest",
+    "material-icon-theme.files.associations": {},
+    "material-icon-theme.folders.associations": {
+        "usecases": "utils",
+        "domain": "interface",
+        "value-objects": "enum",
+        "entities": "class",
+        "persistence": "database"
+    },
+    "material-icon-theme.files.customClones": [
+        {
+            "name": "index",
+            "base": "nest",
+            "color": "white",
+            "fileNames": ["index.ts"]
+        }
+    ],
+    "github.copilot.editor.enableAutoCompletions": true
+}
