@@ -21,10 +21,10 @@
     },
     "material-icon-theme.files.customClones": [
         {
-            "name": "index",
+            "name": "main",
             "base": "nest",
             "color": "white",
-            "fileNames": ["index.ts"]
+            "fileNames": ["main.ts"]
         }
     ],
     "github.copilot.editor.enableAutoCompletions": true

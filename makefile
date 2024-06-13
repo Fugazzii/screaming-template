@@ -1,8 +1,5 @@
-# Extract module_name and usecase_name from MAKECMDGOALS
 module_name := $(word 2, $(MAKECMDGOALS))
 usecase_name := $(word 3, $(MAKECMDGOALS))
-
-# Define directory paths
 usecase_dir := ./src/$(module_name)/usecases/$(usecase_name)
 
 usecase:
@@ -12,3 +9,14 @@ usecase:
 		"$(usecase_name).controller.spec.ts" \
 		"$(usecase_name).service.ts" \
 		"$(usecase_name).service.spec.ts"
+
+module:
+	mkdir -p ./src/$(module_name)
+	cd ./src/$(module_name) && \
+		mkdir -p ./usecases && \
+		mkdir -p ./persistence && \
+		mkdir -p ./domain && \
+		touch ./index.ts && \
+		touch "./$(module_name).module.ts" && \
+		touch "domain/index.ts" && \
+		touch "persistence/index.ts"
