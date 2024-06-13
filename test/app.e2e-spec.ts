@@ -19,17 +19,25 @@ describe("AppController (e2e)", () => {
      * @module PostsModule
      */
     describe("Testing Posts Module (e2e)", () => {
-        it("GET /posts", () => {
+        it("GET /api/posts", () => {
             return request(app.getHttpServer())
                 .get("/posts")
                 .expect(200);
         });
     
-        it("POST /post", () => {
+        it("POST /api/post", () => {
             return request(app.getHttpServer())
                 .post("/post")
                 .send({ title: "Post 1", content: "Content 1", author: "Author" })
                 .expect(201);
-        });    
+        });
+
+        it("GET /api/world", () => {
+            return request(app.getHttpServer())
+                .get("/world")
+                .key("v=1")
+                .expect(200)
+                .expect("version 1");
+        });
     });
 });
