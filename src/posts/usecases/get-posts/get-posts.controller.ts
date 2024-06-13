@@ -12,15 +12,15 @@ export class GetPostsController implements IUseCaseController {
         return this.getPostsUseCase.exec();
     }
 
-    @Version("1")
     @Get("/world")
-    public getHello1(): string {
-        return "version 1";
+    @Version("1")
+    public getHello1(): object {
+        return { data: "version 1" };
     }
   
-    @Version("2")
     @Get("/world")
-    public getHello2(): string {
-        return "version 2";
+    @Version("2")
+    public getHello2(): object {
+        return { data: "version 2" };
     }
 }

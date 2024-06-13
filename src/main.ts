@@ -5,17 +5,15 @@ import { VersioningType } from "@nestjs/common";
 async function bootstrap() {
     const app = await NestFactory.create(AppModule);
     
-    app.enableVersioning({
-        type: VersioningType.URI,
-        prefix: "v"
-    });
-
-    app.setGlobalPrefix("api");
-
-    app.enableCors({
-        origin: "*",
-        allowedHeaders: "*"
-    });
+    app.setGlobalPrefix("api")
+        .enableVersioning({
+            type: VersioningType.URI,
+            prefix: "v"
+        })
+        .enableCors({ 
+            origin: "*", 
+            allowedHeaders: "*"
+        });
 
     await app.listen(3000);
 }
