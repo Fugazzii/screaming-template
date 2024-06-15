@@ -15,7 +15,7 @@ export class PostModel {
     @Prop({ type: mongoose.Schema.Types.String, required: true })
     author: string;
 
-    @Prop({ type: mongoose.Schema.Types.Date, required: true })
+    @Prop({ type: mongoose.Schema.Types.Date, required: true, default: Date.now() })
     created_at: Date;
 }
 

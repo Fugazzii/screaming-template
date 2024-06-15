@@ -1,15 +1,16 @@
-import { Injectable } from "@nestjs/common";
+import { Inject, Injectable } from "@nestjs/common";
 import { Post } from "../../domain/entities/post";
 import { IUseCaseService } from "@DDD";
+import { IPostRepository, PostMapper } from "@posts/domain";
+import { POSTS_REPOSITORY } from "@posts/persistence/post.repository";
 
 @Injectable()
 export class CreatePostUseCaseService implements IUseCaseService<Post, Post> {
-    public async exec(post: Post): Promise<Post> {
-        const created = new Post();
-        created.author = post.author;
-        created.content = post.content;
-        created.createdAt = post.createdAt;
-        created.title = post.title;
-        return created;
+    public constructor(@Inject(POSTS_REPOSITORY) private readonly postRepository: IPostRepository) {}
+
+    public exec(post: Post): Promise<Post> {
+        return this.postRepository.create({
+            data: PostMapper.toPersistence(post)
+        });
     }
 }

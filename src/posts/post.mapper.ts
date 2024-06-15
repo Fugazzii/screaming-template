@@ -10,15 +10,13 @@ class PostMapperDef implements IMapper<Post, PostModel, PostResponseDTO> {
         model.title = entity.title;
         model.content = entity.content;
         model.author = entity.author;
-        model.created_at = entity.createdAt;
         return model;
     }
     toDomain(record: CreatePostDTO): Post {
         return {
             title: record.title,
             content: record.content,
-            author: record.author,
-            createdAt: record.createdAt
+            author: record.author
         };
     }
     toResponse(entity: Post): PostResponseDTO {
