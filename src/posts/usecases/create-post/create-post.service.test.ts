@@ -1,5 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { CreatePostUseCaseService } from "./create-post.service";
+import { mockPost } from "@app/common";
 
 describe("Create Post Service", () => {
     let moduleFixture: TestingModule;
@@ -17,11 +18,9 @@ describe("Create Post Service", () => {
     it("return a post", async () => {
         const service = moduleFixture.get<CreatePostUseCaseService>(CreatePostUseCaseService);
         const createSpy = jest.spyOn(service, "exec");
-        const post = await service.exec();
+        const post = await service.exec(mockPost);
         expect(post).toBeDefined();
-        expect(post.getTitle()).toBe("Ilia magaria");
-        expect(post.getContent()).toBe("ilia uteslesia");
-        expect(post.getAuthor()).toBe("ilia");
+        expect(post).toEqual(mockPost);
         expect(createSpy).toHaveBeenCalled();
     });
 });

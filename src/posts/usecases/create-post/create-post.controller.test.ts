@@ -2,6 +2,7 @@ import { Test, TestingModule } from "@nestjs/testing";
 import { CreatePostUseCaseController } from "./create-post.controller";
 import { CreatePostUseCaseService } from "./create-post.service";
 import { IUseCaseService } from "@DDD";
+import { mockPost } from "@app/common";
 
 describe("Create Post Controller", () => {
     let module: TestingModule;
@@ -9,7 +10,7 @@ describe("Create Post Controller", () => {
 
     beforeAll(async () => {
         const mockService: IUseCaseService = {
-            exec: jest.fn().mockResolvedValue({ author: "Ilia", content: "ilia uteslesia", title: "Ilia magaria" })
+            exec: jest.fn().mockResolvedValue(mockPost)
         };
 
         module = await Test.createTestingModule({
@@ -29,8 +30,8 @@ describe("Create Post Controller", () => {
 
     it("creates user", async () => {
         const createSpy = jest.spyOn(controller, "exec");
-        const result = await controller.exec();
-        expect(result).toEqual({ author: "Ilia", content: "ilia uteslesia", title: "Ilia magaria" });
+        const result = await controller.exec(mockPost);
+        expect(result.data).toEqual(mockPost);
         expect(createSpy).toHaveBeenCalled();
     });
 });

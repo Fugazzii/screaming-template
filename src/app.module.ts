@@ -2,6 +2,8 @@ import { Module } from "@nestjs/common";
 import { PostsModule } from './posts/posts.module';
 
 @Module({
-  imports: [PostsModule]
+    imports: [
+        PostsModule
+    ]
 })
 export class AppModule {}

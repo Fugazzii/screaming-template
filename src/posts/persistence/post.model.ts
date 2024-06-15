@@ -1,6 +1,6 @@
-export class Post {
+export class PostModel {
     public title: string;
     public content: string;
     public author: string;
-    public createdAt = new Date();
+    public created_at = new Date();
 }

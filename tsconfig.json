@@ -18,15 +18,10 @@
     "forceConsistentCasingInFileNames": false,
     "noFallthroughCasesInSwitch": false,
     "paths": {
-      "@posts/*": [
-        "src/posts/*"
-      ],
-      "@app/common": [
-        "libs/common/src"
-      ],
-      "@DDD": [
-        "libs/common/src/ddd"
-      ]
+        "@posts/*": ["src/posts/*"],
+        "@app/common": ["libs/common/src"],
+        "@DDD": ["libs/common/src/ddd"],
+        "@contracts/*": ["contracts/api/v1/*"]
     }
   }
 }

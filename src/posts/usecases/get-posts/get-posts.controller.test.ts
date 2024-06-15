@@ -1,7 +1,6 @@
 import { Test, TestingModule } from "@nestjs/testing";
 import { GetPostsController } from "./get-posts.controller";
 import { GetPostsUseCaseService } from "./get-posts.service";
-import { Post } from "@posts/domain";
 
 describe("Get Post Controller", () => {
     let module: TestingModule;
@@ -12,10 +11,7 @@ describe("Get Post Controller", () => {
             providers: [{
                 provide: GetPostsUseCaseService,
                 useValue: {
-                    exec: jest.fn().mockResolvedValue([
-                        new Post("1", "Post 1", "Content 1"),
-                        new Post("2", "Post 2", "Content 2")
-                    ])
+                    exec: jest.fn().mockResolvedValue([])
                 }
             }]
         }).compile();
@@ -30,10 +26,7 @@ describe("Get Post Controller", () => {
         const controller = module.get<GetPostsController>(GetPostsController);
         const getSpy = jest.spyOn(controller, "exec");
         const result = await controller.exec();
-        expect(result).toEqual([
-            new Post("1", "Post 1", "Content 1"),
-            new Post("2", "Post 2", "Content 2")
-        ]);
+        expect(result).toEqual([]);
         expect(getSpy).toHaveBeenCalled();
     });
 });
