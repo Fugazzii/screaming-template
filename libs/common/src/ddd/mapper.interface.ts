@@ -1,9 +1,13 @@
+//* toDomain: DatabaseModel -> DomainEntity
+//* toPersistence: DomainEntity -> DatabaseModel
+//* toResponse: DomainEntity -> Response
+
 export interface IMapper<
     DomainEntity,
-    DbRecord,
+    DatabaseModel,
     Response = unknown,
 > {
-    toPersistence(entity: DomainEntity): DbRecord;
-    toDomain(record: unknown): DomainEntity;
+    toDomain(dto: unknown): DomainEntity;
+    toPersistence(entity: DomainEntity): DatabaseModel;
     toResponse(entity: DomainEntity): Response;
 }

@@ -22,3 +22,18 @@ export type UpdateParams<Entity> = {
     where: Partial<Entity>,
     data: Partial<Entity>
 };
+
+type SuccessResponse<Entity = unknown> = {
+    data: Entity,
+    message: string
+};
+
+type ErrorResponse<Error = unknown> = {
+    message: string,
+    error: Error
+};
+
+export type ApiResponse<
+    Entity = unknown, 
+    Error = unknown
+> = SuccessResponse<Entity> | ErrorResponse<Error>;
