@@ -4,7 +4,7 @@ services:
     build:
       context: .
     env_file:
-      - ./.env
+      - ./.env.dev
     ports:
       - "3000:3000"
     depends_on:
@@ -12,19 +12,7 @@ services:
     volumes:
       - .:/app
       - /app/node_modules
-    command: npm run start:dev  # Adjust command as needed for your application
-
-  test:
-    build:
-      context: .
-    env_file:
-      - ./.env.test  # Use a different env file for testing
-    depends_on:
-      - mongodb_test
-    volumes:
-      - .:/app
-      - /app/node_modules
-    command: npm run test:e2e  # Adjust command to run your E2E test suite
+    command: ./start.sh
 
   mongodb:
     image: mongo:latest
@@ -34,14 +22,5 @@ services:
     volumes:
       - mongodb_data:/data/db
 
-  mongodb_test:
-    image: mongo:latest
-    container_name: mongodb_test
-    ports:
-      - "27018:27017"  # Use a different port to avoid conflicts
-    volumes:
-      - mongodb_test_data:/data/db
-
 volumes:
   mongodb_data:
-  mongodb_test_data:

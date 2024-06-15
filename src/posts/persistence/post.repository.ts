@@ -1,15 +1,16 @@
 import { CreateParams } from "@app/common";
 import { IPostRepository, Post, PostMapper } from "@posts/domain";
 import { PostModel } from "./post.model";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
 
-export class PostRepository implements IPostRepository {
-    async create(params: CreateParams<PostModel>): Promise<Post> {
-        // db simulation
-        const created = new PostModel();
-        created.author = params.data.author;
-        created.content = params.data.content;
-        created.title = params.data.title;
-        created.created_at = params.data.created_at;
+export class PostsRepository implements IPostRepository {
+    public constructor(
+        @InjectModel(PostModel.name) private readonly postsRepository: Model<PostModel>
+    ) {}
+
+    public async create(params: CreateParams<PostModel>): Promise<Post> {
+        const created = await this.postsRepository.create(params.data);
         return PostMapper.toDomain(created);
     }
 }

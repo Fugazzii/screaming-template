@@ -1,0 +1,24 @@
+version: "3"
+services:
+  test:
+    build:
+      context: .
+    environment:
+      - NODE_ENV=test
+    env_file:
+      - ./.env.test
+    depends_on:
+      - mongodb_test
+    volumes:
+      - .:/app
+      - /app/node_modules
+    command: npm run test:e2e
+  mongodb_test:
+    image: mongo:latest
+    container_name: mongodb_test
+    ports:
+      - "27018:27017"
+    volumes:
+      - mongodb_test_data:/data/db
+volumes:
+  mongodb_test_data:
